@@ -1,6 +1,6 @@
 <html>
 <head>
-    @include('head')
+    @include('layouts/head')
     <title>
         @yield('title')
     </title>
@@ -8,7 +8,7 @@
 <body>
 
 <div>
-    @include('navbar')
+    @include('layouts/navbar')
 </div>
     @yield('content')
 </body>

@@ -1,9 +1,17 @@
-@extends('layout.base')
+@extends('layouts.base')
 
 @section('title')
     This is the master sidebar.
 @endsection
 
 @section('content')
-    Lorem ipsum dolor sit amet, consectetur adipisicing elit. Assumenda, minus, praesentium? Dicta eum ipsam ipsum odio! Eius est hic laborum mollitia repellat repellendus soluta, sunt! Aliquam, amet animi, aut cupiditate distinctio eius eligendi impedit in iusto libero maiores minus, necessitatibus nihil obcaecati quas quo recusandae reiciendis rerum sapiente sint. Quas?
+    <div class="jumbotron">
+        <h1 class="display-3">Hello, world!</h1>
+        <p class="lead">This is a simple hero unit, a simple jumbotron-style component for calling extra attention to featured content or information.</p>
+        <hr class="m-y-2">
+        <p>It uses utility classes for typography and spacing to space content out within the larger container.</p>
+        <p class="lead">
+            <a class="btn btn-primary btn-lg" href="#" role="button">Learn more</a>
+        </p>
+    </div>
 @endsection
