@@ -11,7 +11,9 @@
 |
 */
 
-$router->get('/', function () use ($router) {
+$router->get('/', function () {
     //return $router->app->version();
     return view('index');
 });
+
+$router->post('/domains', 'DomainsController@addDomens');
