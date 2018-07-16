@@ -17,3 +17,4 @@ $router->get('/', function () {
 });
 
 $router->post('/domains', 'DomainsController@addDomens');
+$router->get('/domains', 'DomainsController@viewDomens');
