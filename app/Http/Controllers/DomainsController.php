@@ -43,18 +43,21 @@ class DomainsController extends Controller
         $domain->name = $request->name;
         $domain->save();
         $id = $domain->id;
-        $client = new Client();
-        $request = new \GuzzleHttp\Psr7\Request('GET', $request->name);
-        $promise = $client->sendAsync($request)->then(function ($response) use ($id) {
-            Domain::where('id', $id)
-                ->update([
-                    'content_length' => $response->getHeader('content-length')[0],
-                    'body' => $response->getBody(),
-                    'code_response' => $response->getStatusCode()
-                ]);
-        });
-        $promise->wait();
-
+        try {
+            $client = new Client();
+            $request = new \GuzzleHttp\Psr7\Request('GET', $request->name);
+            $promise = $client->sendAsync($request)->then(function ($response) use ($id) {
+                Domain::where('id', $id)
+                    ->update([
+                        'content_length' => $response->getHeader('content-length')[0],
+                        'body' => $response->getBody(),
+                        'code_response' => $response->getStatusCode()
+                    ]);
+            });
+            $promise->wait();
+        } catch (\Exception $e) {
+            $errors = $e;
+        }
         return redirect()->route('domains.show', ['id' => $id]);
     }
 
