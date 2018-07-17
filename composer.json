@@ -34,7 +34,7 @@
             "php -r \"copy('.env.example', '.env');\""
         ],
         "post-install-cmd": [
-            "php -r \"copy('.env.example', '.env');\"",
+            "cp .env.example .env",
             "Illuminate\\Foundation\\ComposerScripts::postInstall",
             "php artisan optimize",
             "php artisan migrate --force"
