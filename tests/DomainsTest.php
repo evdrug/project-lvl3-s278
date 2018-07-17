@@ -15,7 +15,7 @@ class DomainsTest extends TestCase
 
     public function testAddDomain()
     {
-        $this->post('/domains',['name' => 'http://exemplew23.com']);
-        $this->seeInDatabase('domains', ['name' => 'http://exemplew23.com']);
+        $this->post('/domains',['name' => 'http://yandex.ru']);
+        $this->seeInDatabase('domains', ['name' => 'http://yandex.ru']);
     }
 }
