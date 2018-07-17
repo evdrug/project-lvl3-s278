@@ -30,3 +30,8 @@ $router->get('/domains/{id}', [
     'as' => 'domains.show',
     'uses' => 'DomainsController@show'
     ]);
+
+$router->delete('/domains/{id}', [
+    'as' => 'domains.destroy',
+    'uses' => 'DomainsController@destroy'
+    ]);

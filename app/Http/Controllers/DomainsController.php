@@ -43,4 +43,16 @@ class DomainsController extends Controller
 
         return view('domainId', ['domain' => $domain]);
     }
+
+    public function destroy($id)
+    {
+        $domainId = (int)$id;
+        $domain = Domains::find($domainId);
+        if (empty($domain)) {
+            return view('404');
+        }
+        $domain->delete();
+
+        return redirect()->route('domains.index');
+    }
 }

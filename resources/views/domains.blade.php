@@ -12,6 +12,7 @@
                 <th scope="col">Domain</th>
                 <th scope="col">Created at</th>
                 <th scope="col">Updated at</th>
+                <th scope="col">Action</th>
             </tr>
             </thead>
             <tbody>
@@ -28,6 +29,13 @@
                     </td>
                     <td>
                         {{ $domain->updated_at }}
+                    </td>
+                    <td>
+                        <form action="{{ route('domains.destroy', ['id' => $domain->id]) }}" method ="POST">
+                            <input name="_method" type="hidden" value="DELETE">
+                            <button type="submit" class="btn btn-danger"><i class="far fa-trash-alt"></i>
+                            </button>
+                        </form>
                     </td>
                 </tr>
             @endforeach
