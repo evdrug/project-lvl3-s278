@@ -35,13 +35,7 @@
         ],
         "post-install-cmd": [
             "cp .env.example .env",
-            "Illuminate\\Foundation\\ComposerScripts::postInstall",
-            "php artisan optimize",
             "php artisan migrate --force"
-        ],
-        "post-update-cmd": [
-            "Illuminate\\Foundation\\ComposerScripts::postUpdate",
-            "php artisan optimize"
         ]
     },
     "minimum-stability": "dev",
