@@ -5,12 +5,7 @@ use Laravel\Lumen\Testing\DatabaseTransactions;
 
 class DomainsTest extends TestCase
 {
-
-    public function setUp()
-    {
-        parent::setUp();
-        \Illuminate\Support\Facades\Artisan::call('migrate');
-    }
+    use DatabaseMigrations;
 
     public function testIndexDomainPage()
     {

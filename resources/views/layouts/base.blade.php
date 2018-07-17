@@ -5,12 +5,12 @@
         @yield('title')
     </title>
 </head>
-<body>
+<body class="h-100 d-flex flex-column">
 
 <div>
     @include('layouts/navbar')
 </div>
-<div class="content">
+<div class="content d-flex flex-column justify-content-between h-100">
     @yield('content')
 </div>
 

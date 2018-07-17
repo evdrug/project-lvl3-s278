@@ -8,7 +8,7 @@
 
 namespace App\Http\Controllers;
 
-use App\Domains;
+use App\Domain;
 use Illuminate\Http\Request;
 
 class DomainsController extends Controller
@@ -16,7 +16,7 @@ class DomainsController extends Controller
 
     public function index()
     {
-        $domains = Domains::paginate(5);
+        $domains = Domain::paginate(5);
         return view('domains', ['domains' => $domains]);
     }
 
@@ -26,7 +26,7 @@ class DomainsController extends Controller
             'name' => 'required|url|max:255'
         ]);
 
-        $domain = new Domains;
+        $domain = new Domain;
         $domain->name = $request->name;
         $domain->save();
         $id = $domain->id;
@@ -36,9 +36,9 @@ class DomainsController extends Controller
     public function show($id)
     {
         $domainId = (int)$id;
-        $domain = Domains::where('id', $domainId)->first();
+        $domain = Domain::where('id', $domainId)->first();
         if (empty($domain)) {
-            return view('404');
+            abort(404);
         }
 
         return view('domainId', ['domain' => $domain]);
@@ -47,9 +47,9 @@ class DomainsController extends Controller
     public function destroy($id)
     {
         $domainId = (int)$id;
-        $domain = Domains::find($domainId);
+        $domain = Domain::find($domainId);
         if (empty($domain)) {
-            return view('404');
+            abort(404);
         }
         $domain->delete();
 

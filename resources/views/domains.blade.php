@@ -43,7 +43,7 @@
         </table>
     </div>
 
-<div class="paginations">
+<div class="d-flex justify-content-center">
     {{ $domains->links() }}
 </div>
 
