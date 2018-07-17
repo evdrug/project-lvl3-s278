@@ -10,6 +10,8 @@
             <tr>
                 <th scope="col">#</th>
                 <th scope="col">Domain</th>
+                <th scope="col">Code Response</th>
+                <th scope="col">Content Length</th>
                 <th scope="col">Created at</th>
                 <th scope="col">Updated at</th>
                 <th scope="col">Action</th>
@@ -23,6 +25,12 @@
                     </td>
                     <td>
                         <a href="{{ route('domains.show', ['id' => $domain->id]) }}">{{ $domain->name }}</a>
+                    </td>
+                    <td>
+                        {{ $domain->code_response }}
+                    </td>
+                    <td>
+                        {{ $domain->content_length }}
                     </td>
                     <td>
                         {{ $domain->created_at }}

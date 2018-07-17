@@ -8,6 +8,8 @@
         <thead>
         <tr>
             <th scope="col">Domain</th>
+            <th scope="col">Code Response</th>
+            <th scope="col">Content Length</th>
             <th scope="col">Created at</th>
             <th scope="col">Updated at</th>
         </tr>
@@ -16,6 +18,12 @@
             <tr>
                 <td>
                     {{ $domain->name }}
+                </td>
+                <td>
+                    {{ $domain->code_response }}
+                </td>
+                <td>
+                    {{ $domain->content_length }}
                 </td>
                 <td>
                     {{ $domain->created_at }}

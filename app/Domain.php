@@ -13,4 +13,6 @@ use Illuminate\Database\Eloquent\Model;
 class Domain extends Model
 {
     protected $table = 'domains';
+
+    protected $fillable = ['name',  'content_length', 'body', 'code_response'];
 }

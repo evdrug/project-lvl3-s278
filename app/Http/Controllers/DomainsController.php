@@ -9,6 +9,7 @@
 namespace App\Http\Controllers;
 
 use App\Domain;
+use GuzzleHttp\Client;
 use Illuminate\Http\Request;
 
 class DomainsController extends Controller
@@ -26,10 +27,34 @@ class DomainsController extends Controller
             'name' => 'required|url|max:255'
         ]);
 
-        $domain = new Domain;
-        $domain->name = $request->name;
-        $domain->save();
-        $id = $domain->id;
+        $client = new Client();
+        $res = $client->request('GET', $request->name);
+        $id = Domain::create([
+            'name' => $request->name,
+            'content_length' => $res->getHeader('content-length')[0],
+            'body' => $res->getBody(),
+            'code_response' => $res->getStatusCode()
+            ]);
+
+
+//        Пробовал 2 варианта, первый компактнее :)
+//
+//        $domain = new Domain;
+//        $domain->name = $request->name;
+//        $domain->save();
+//        $id = $domain->id;
+//        $client = new Client();
+//        $request = new \GuzzleHttp\Psr7\Request('GET', $request->name);
+//        $promise = $client->sendAsync($request)->then(function ($response) use ($id) {
+//            Domain::where('id', $id)
+//                ->update([
+//                    'content_length' => $response->getHeader('content-length')[0],
+//                    'body' => $response->getBody(),
+//                    'code_response' => $response->getStatusCode()
+//            ]);
+//        });
+//        $promise->wait();
+
         return redirect()->route('domains.show', ['id' => $id]);
     }
 
