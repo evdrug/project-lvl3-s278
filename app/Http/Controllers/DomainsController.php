@@ -14,13 +14,13 @@ use Illuminate\Http\Request;
 class DomainsController extends Controller
 {
 
-    public function viewDomens()
+    public function index()
     {
         $domains = Domains::all();
         return view('domains', ['domains' => $domains]);
     }
 
-    public function addDomens(Request $request)
+    public function store(Request $request)
     {
         $this->validate($request, [
             'site' => 'required|url|max:255'
@@ -30,10 +30,10 @@ class DomainsController extends Controller
         $domains->name = $request->site;
         $domains->save();
         $id = $domains->id;
-        return redirect("/domains/{$id}");
+        return redirect()->route('domains.show', ['id' => $id]);
     }
 
-    public function viewIdDomens($id)
+    public function show($id)
     {
         $domainId = (int)$id;
         $domain = Domains::where('id', $domainId)->first();

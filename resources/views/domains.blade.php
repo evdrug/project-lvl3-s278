@@ -20,7 +20,7 @@
                     {{ $key + 1 }}
                 </td>
                 <td>
-                    <a href="{{url("/domains/{$domain->id}")}}">{{ $domain->name }}</a>
+                    <a href="{{ route('domains.show', ['id' => $domain->id]) }}">{{ $domain->name }}</a>
                 </td>
                 <td>
                     {{ $domain->created_at }}

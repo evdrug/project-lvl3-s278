@@ -11,11 +11,22 @@
 |
 */
 
-$router->get('/', function () {
-    //return $router->app->version();
-    return view('index');
-});
+$router->get('/', [
+    'as' => 'home.index',
+    'uses' => 'HomeController@index'
+]);
 
-$router->post('/domains', 'DomainsController@addDomens');
-$router->get('/domains', 'DomainsController@viewDomens');
-$router->get('/domains/{id}', 'DomainsController@viewIdDomens');
+$router->post('/domains', [
+    'as' => 'domains.store',
+    'uses' => 'DomainsController@store'
+    ]);
+
+$router->get('/domains', [
+    'as' => 'domains.index',
+    'uses' => 'DomainsController@index'
+    ]);
+
+$router->get('/domains/{id}', [
+    'as' => 'domains.show',
+    'uses' => 'DomainsController@show'
+    ]);
