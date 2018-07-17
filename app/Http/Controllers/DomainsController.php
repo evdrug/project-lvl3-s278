@@ -51,7 +51,7 @@ class DomainsController extends Controller
                     'content_length' => $response->getHeader('content-length')[0],
                     'body' => $response->getBody(),
                     'code_response' => $response->getStatusCode()
-            ]);
+                ]);
         });
         $promise->wait();
 
