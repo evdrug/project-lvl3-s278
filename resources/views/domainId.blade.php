@@ -1,26 +1,21 @@
 @extends('layouts.base')
 
 @section('title')
-    List Domains
+    Domain {{ $domain->name }}
 @endsection
 @section('content')
     <table class="table">
         <thead>
         <tr>
-            <th scope="col">#</th>
             <th scope="col">Domain</th>
             <th scope="col">Created at</th>
             <th scope="col">Updated at</th>
         </tr>
         </thead>
         <tbody>
-        @foreach($domains as $key => $domain)
             <tr>
                 <td>
-                    {{ $key + 1 }}
-                </td>
-                <td>
-                    <a href="{{url("/domains/{$domain->id}")}}">{{ $domain->name }}</a>
+                    {{ $domain->name }}
                 </td>
                 <td>
                     {{ $domain->created_at }}
@@ -29,8 +24,6 @@
                     {{ $domain->updated_at }}
                 </td>
             </tr>
-        @endforeach
         </tbody>
     </table>
-
 @endsection

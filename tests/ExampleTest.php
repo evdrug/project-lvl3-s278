@@ -10,12 +10,9 @@ class ExampleTest extends TestCase
      *
      * @return void
      */
-    public function testExample()
+    public function testResponseIndexPage()
     {
-//        $this->get('/');
-//
-//        $this->assertEquals(
-//            $this->app->version(), $this->response->getContent()
-//        );
+        $this->get('/');
+        $this->assertResponseOk();
     }
 }

@@ -4,5 +4,5 @@
         <input class="form-control" type="text" placeholder="http://exemple.com" name="site">
         <small id="emailHelp" class="form-text text-muted">Add a website to analyze</small>
     </div>
-    <button type="submit" class="btn btn-primary">Submit</button>
+    <button type="submit" class="btn btn-primary" name="addDomains">Submit</button>
 </form>

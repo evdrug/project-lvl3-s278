@@ -17,8 +17,7 @@ class DomainsController extends Controller
     public function viewDomens()
     {
         $domains = Domains::all();
-        return view('domains',['domains' => $domains]);
-
+        return view('domains', ['domains' => $domains]);
     }
 
     public function addDomens(Request $request)
@@ -30,6 +29,18 @@ class DomainsController extends Controller
         $domains = new Domains;
         $domains->name = $request->site;
         $domains->save();
-        return redirect('/domains');
+        $id = $domains->id;
+        return redirect("/domains/{$id}");
+    }
+
+    public function viewIdDomens($id)
+    {
+        $domainId = (int)$id;
+        $domain = Domains::where('id', $domainId)->first();
+        if (empty($domain)) {
+            return view('404');
+        }
+
+        return view('domainId', ['domain' => $domain]);
     }
 }
