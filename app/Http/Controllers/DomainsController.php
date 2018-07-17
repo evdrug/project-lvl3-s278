@@ -16,20 +16,20 @@ class DomainsController extends Controller
 
     public function index()
     {
-        $domains = Domains::all();
+        $domains = Domains::paginate(5);
         return view('domains', ['domains' => $domains]);
     }
 
     public function store(Request $request)
     {
         $this->validate($request, [
-            'site' => 'required|url|max:255'
+            'name' => 'required|url|max:255'
         ]);
 
-        $domains = new Domains;
-        $domains->name = $request->site;
-        $domains->save();
-        $id = $domains->id;
+        $domain = new Domains;
+        $domain->name = $request->name;
+        $domain->save();
+        $id = $domain->id;
         return redirect()->route('domains.show', ['id' => $id]);
     }
 

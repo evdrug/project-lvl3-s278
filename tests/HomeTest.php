@@ -3,14 +3,9 @@
 use Laravel\Lumen\Testing\DatabaseMigrations;
 use Laravel\Lumen\Testing\DatabaseTransactions;
 
-class ExampleTest extends TestCase
+class HomeTest extends TestCase
 {
-    /**
-     * A basic test example.
-     *
-     * @return void
-     */
-    public function testResponseIndexPage()
+    public function testIndexPage()
     {
         $this->get('/');
         $this->assertResponseOk();
