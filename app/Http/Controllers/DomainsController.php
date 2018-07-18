@@ -44,10 +44,13 @@ class DomainsController extends Controller
             $description = $document->find('meta[name=description]')
                 ? $document->find('meta[name=description]')[0]->attr('content')
                 : null;
+            $contentLength = $res->getHeader('content-length')
+                    ?$res->getHeader('content-length')[0]
+                    : null;
 
             $id = Domain::create([
                 'name' => $request->name,
-                'content_length' => $res->getHeader('content-length')[0],
+                'content_length' => $contentLength,
                 'body' => $body,
                 'code_response' => $res->getStatusCode(),
                 'header' => $header,
