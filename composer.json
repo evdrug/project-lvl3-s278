@@ -33,6 +33,7 @@
         "phpcs": "phpcs",
         "post-root-package-install": [
             "php -r \"copy('.env.example', '.env');\"",
+            "cp .env.example .env",
             "php artisan migrate --force"
         ]
     },
