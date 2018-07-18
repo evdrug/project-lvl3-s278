@@ -32,7 +32,6 @@ class DomainsController extends Controller
         $domain->save();
         $id = $domain->id;
         try {
-
             $client = new Client();
             $res = $client->request('GET', $request->name);
             $domain->update([
