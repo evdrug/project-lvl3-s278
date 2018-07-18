@@ -7,15 +7,18 @@ class DomainsTest extends TestCase
 {
     use DatabaseMigrations;
 
-    public function testIndexDomainPage()
+    public function testAddPost()
     {
-        $this->get('/domains');
-        $this->assertResponseOk();
+        $param = ['name' => 'http://yandex.ru'];
+        $this->post('/domains', $param);
+        $this->seeInDatabase('domains', $param);
     }
 
-    public function testAddDomain()
+    public function testListAddDomain()
     {
-        $this->post('/domains',['name' => 'http://yandex.ru']);
-        $this->seeInDatabase('domains', ['name' => 'http://yandex.ru']);
+        $domain = factory(App\Domain::class)->create();
+        $this->seeInDatabase('domains', ['name' => $domain->name, 'id' => $domain->id]);
+        $this->get('/domains');
+        $this->assertResponseOk();
     }
 }
