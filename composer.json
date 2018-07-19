@@ -36,7 +36,8 @@
         ],
         "post-create-project-cmd" : [
             "cp .env.example .env",
-            "php artisan migrate --force"
+            "php artisan migrate --force",
+            "php artisan queue:work"
         ]
     },
     "minimum-stability": "dev",
