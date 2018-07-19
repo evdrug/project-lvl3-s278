@@ -9,6 +9,7 @@
 namespace App\Http\Controllers;
 
 use App\Domain;
+use App\Jobs\ProcessParsesPages;
 use DiDom\Document;
 use GuzzleHttp\Client;
 use Illuminate\Http\Request;
@@ -29,38 +30,11 @@ class DomainsController extends Controller
             'name' => 'required|url|max:255'
         ]);
 
-        try {
-            $client = new Client();
-            $res = $client->request('GET', $request->name);
-            $body = $res->getBody();
-
-            $document = new Document($body->getContents());
-            $header = $document->find('h1')
-                ? $document->find('h1')[0]->text()
-                : null;
-            $keywords = $document->find('meta[name=keywords]')
-                ? $document->find('meta[name=keywords]')[0]->attr('content')
-                : null ;
-            $description = $document->find('meta[name=description]')
-                ? $document->find('meta[name=description]')[0]->attr('content')
-                : null;
-            $contentLength = $res->getHeader('content-length')
-                    ?$res->getHeader('content-length')[0]
-                    : null;
-
-            $id = Domain::create([
-                'name' => $request->name,
-                'content_length' => $contentLength,
-                'body' => $body,
-                'code_response' => $res->getStatusCode(),
-                'header' => $header,
-                'keywords' => $keywords,
-                'description' => $description
-            ]);
-        } catch (\Exception $e) {
-            $message = $e->getMessage();
-            return view('index', ['errors' => [$message] , 'url' => $request->name]);
-        }
+        $domain = new Domain;
+        $domain->name = $request->name;
+        $domain->save();
+        $id = $domain->id;
+        dispatch(new ProcessParsesPages($domain));
         return redirect()->route('domains.show', ['id' => $id]);
     }
 
